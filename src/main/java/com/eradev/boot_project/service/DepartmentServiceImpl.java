@@ -2,11 +2,13 @@ package com.eradev.boot_project.service;
 
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.eradev.boot_project.entity.Department;
+import com.eradev.boot_project.error.DepartmentNotFoundException;
 import com.eradev.boot_project.repository.DepartmentRepository;
 
 @Service
@@ -37,9 +39,25 @@ public class DepartmentServiceImpl implements DepartmentService {
         }
 
         @Override
+        public Department fetchDepartmentByName(String departmentName) {
+                return departmentRepository.findByDepartmentName(departmentName);
+        }
+
+        @Override
         public Department fetchDepartmentById(Long departmentId) {
-                // TODO Auto-generated method stub
-                return departmentRepository.findById(departmentId).get();
+                try {
+                        Optional<Department> department = departmentRepository.findById(departmentId);
+
+                        if (!department.isPresent()) {
+                                throw new DepartmentNotFoundException("Department Not  There");
+                        }
+
+                        return department.get();
+                } catch (DepartmentNotFoundException ex) {
+                        // Handle the exception, log, or rethrow if needed
+                        throw new RuntimeException(ex); // Rethrowing as a runtime exception, adapt as needed
+                }
+
         }
 
         @Override
@@ -58,12 +76,6 @@ public class DepartmentServiceImpl implements DepartmentService {
         public List<Department> fetchDepartmentList() {
                 // TODO Auto-generated method stub
                 return departmentRepository.findAll();
-        }
-
-        @Override
-        public Department fetchDepartmentByName(String departmentName) {
-                // TODO Auto-generated method stub
-                return departmentRepository.findByDepartmentName(departmentName);
         }
 
 }
