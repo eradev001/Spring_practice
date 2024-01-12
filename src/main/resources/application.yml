@@ -1,0 +1,65 @@
+debug: true
+
+# spring:
+#   config:
+#     activate:
+#       on-profile: qa
+# name: test
+# enabled: true
+
+# ---
+spring:
+  # profiles: qa
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    url: jdbc:mysql://localhost:3306/dcbapp
+    password: eradev001
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQLDialect
+    hibernate:
+      ddl-auto: update
+    show-sql: 'true'
+hello:
+  message: This message from config file
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+# ---
+# spring:
+#   profiles: dev
+#   datasource:
+#     driver-class-name: com.mysql.cj.jdbc.Driver
+#     username: root
+#     url: jdbc:mysql://localhost:3306/dcbapp
+#     password: eradev001
+#   jpa:
+#     properties:
+#       hibernate:
+#         dialect: org.hibernate.dialect.MySQLDialect
+#     hibernate:
+#       ddl-auto: update
+#     show-sql: 'true'
+# hello:
+#   message: This message from config file
+# ---
+# spring:
+#   profiles: prod
+#   datasource:
+#     driver-class-name: com.mysql.cj.jdbc.Driver
+#     username: root
+#     url: jdbc:mysql://localhost:3306/dcbapp-prod
+#     password: eradev001
+#   jpa:
+#     properties:
+#       hibernate:
+#         dialect: org.hibernate.dialect.MySQLDialect
+#     hibernate:
+#       ddl-auto: update
+#     show-sql: 'true'
+# hello:
+#   message: This message from config file

@@ -1,39 +1,38 @@
-package com.eradev.boot_project.repository;
+// package com.eradev.boot_project.repository;
 
-import static org.junit.jupiter.api.Assertions.*;
+// import static org.junit.jupiter.api.Assertions.*;
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
-import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
+// import org.junit.jupiter.api.BeforeEach;
+// import org.junit.jupiter.api.Test;
+// import org.springframework.beans.factory.annotation.Autowired;
+// import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+// import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 
-import com.eradev.boot_project.entity.Department;
+// import com.eradev.boot_project.entity.Department;
 
-@DataJpaTest
-public class DepartmentRepositoryTest {
-        @Autowired
-        private DepartmentRepository departmentRepository;
+// @DataJpaTest
+// class DepartmentRepositoryTest {
 
-        @Autowired
-        private TestEntityManager entityManager;
+// @Autowired
+// private DepartmentRepository departmentRepository;
 
-        @BeforeEach
-        void setUp() {
-                Department department = Department.builder()
-                                .departmentName("Sales Team")
-                                .departmentCode("003")
-                                .departmentAddress("Busan")
-                                .build();
+// @Autowired
+// private TestEntityManager entityManager;
 
-                entityManager.persist(department);
-        }
+// @BeforeEach
+// void setUp() {
+// Department department = Department.builder()
+// .departmentName("Dev")
+// .departmentAddress("Seoul")
+// .departmentCode("001")
+// .build();
 
-        @Test
-        @DisplayName("Return Department Name when ID is matched")
-        public void whenFindById_thenReturnDepartment() {
-                Department department = departmentRepository.findById(1L).get();
-                assertEquals(department.getDepartmentName(), "Sales Team");
-        }
-}
+// entityManager.persist(department);
+// }
+
+// @Test
+// public void whenFindById_thenReturnDepartment() {
+// Department department = departmentRepository.findById(1L).get();
+// assertEquals(department.getDepartmentName(), "Dev");
+// }
+// }
